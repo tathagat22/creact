@@ -27,12 +27,6 @@ const clinchLogoFull = "https://clinchit.io/Clinch Logo.8c0a9e1d87f9a10c541f25c0
 const heroBgOrb = "https://clinchit.io/images/UeN8DRPyDg7p.png";
 const howItWorksBg = "https://clinchit.io/images/how_it_works.svg";
 const signUpImage = "https://clinchit.io/images/1_Sign_Up.svg";
-const connectStackImage = "https://clinchit.io/images/2_Connect_your_Stack.svg";
-const automateImage = "https://clinchit.io/images/3_Let_Clinch_Automate_Gruntwork.svg";
-const gdprLogo = "https://clinchit.io/images/GDPR.svg";
-const ccpaLogo = "https://clinchit.io/images/CCPA.svg";
-const isoLogo = "https://clinchit.io/images/ISO.svg";
-const socLogo = "https://clinchit.io/images/SOC_2_Type_2.svg";
 
 
 // Data for the dynamic feature tabs (no change)
