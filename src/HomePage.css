@@ -1,0 +1,762 @@
+/* src/HomePage.css */
+/* This is a complete rewrite for 100% accuracy */
+
+/* --- Global & Utilities --- */
+.container {
+
+  padding: 0 24px;
+}
+
+.btn {
+  padding: 10px 18px;
+  border-radius: 10px; /* Clinch's button radius */
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #FF6B00, #D9002C);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #E0E0E0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-tertiary { /* The "Try Free" button */
+  background: transparent;
+  color: #E0E0E0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-tertiary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-large {
+  padding: 12px 24px;
+  font-size: 1rem;
+}
+
+/* This is the <header> tag */
+.new-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: 80px; /* My assumption, matches old header */
+}
+
+/* This is the .scrollHeaderGradient class */
+.scrollHeaderGradient {
+  background: rgba(11, 10, 16, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* This is the main desktop nav container */
+.desktop-nav {
+  display: none; /* hidden */
+  height: 100%;
+}
+
+.logo-link-desktop {
+  margin: -0.375rem 0.375rem; /* -m-1.5 p-1.5 */
+  padding: 0.375rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.logo-container {
+  height: 2rem; /* h-8 */
+}
+.logo-container img {
+  height: 100%;
+  width: auto;
+}
+
+.nav-links-container {
+  display: flex;
+  justify-content: space-evenly; /* justify-evenly */
+  gap: 1rem; /* gap-4 */
+  margin-left: 0.25rem; /* ml-1 */
+}
+
+.nav-item {
+  height: 100%;
+  text-align: center;
+  align-self: center; /* self-center */
+  display: flex;
+  align-items: center; /* items-center */
+  position: relative; /* For dropdown */
+}
+
+.nav-link, .nav-link-dropdown {
+  color: #FFFFFF; /* text-white */
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.nav-dropdown-arrow {
+  width: 2rem; /* w-8 */
+  color: currentColor;
+}
+
+/* .group:hover .text-white */
+.group:hover .nav-link, 
+.group:hover .nav-link-dropdown {
+  color: #F12711; /* group-hover:text-[#F12711] */
+}
+
+/* Re-using old dropdown styles, slightly adapted */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%; /* Position below nav */
+  left: 0;
+  background: #1A1A22;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+.nav-item:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.dropdown-content a {
+  color: #A0A0A0;
+  padding: 12px 16px;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+}
+
+
+.auth-buttons-container {
+  display: flex;
+  flex-direction: row; /* flex-row */
+  align-items: center; /* items-center */
+  justify-content: flex-end; /* justify-end */
+  gap: 0.5rem; /* gap-2 */
+}
+
+.nav-login-btn {
+  color: #FFFFFF; /* text-white */
+  font-weight: 600; /* font-semibold */
+  flex-shrink: 0; /* flex-shrink-0 */
+  padding: 0 1.5rem; /* px-6 */
+  font-size: 1.125rem; /* text-lg */
+  cursor: pointer; /* cursor-pointer */
+}
+
+/* This is the .try-free-button */
+.try-free-button {
+  margin-right: 2rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  transition: background-color 0.3s;
+  border-radius: 100px;
+}
+.try-free-text {
+  padding: 0.65rem 1rem;
+  color: white;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  border-radius: 100px;
+}
+.try-free-border {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  border-radius: 100px;
+  padding: 2px; /* This creates the border width */
+  background: linear-gradient(90deg, rgb(241, 39, 17) 0%, rgb(197, 134, 0) 100%);
+  mask: linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box exclude, 
+        linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px);
+  -webkit-mask: linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px) content-box exclude, 
+                linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 0px);
+}
+
+/* This is the .bookDemo class */
+.bookDemo {
+  flex-shrink: 0; /* flex-shrink-0 */
+}
+.bookDemo a {
+  /* Applying .btn-primary styles */
+  display: inline-block;
+  background: linear-gradient(90deg, #FF6B00, #D9002C);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.bookDemo:hover {
+  filter: brightness(125%); /* hover:brightness-125 */
+}
+.bookDemo a:hover {
+  transform: none; /* Override btn-primary hover */
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+}
+
+
+/* --- Mobile Nav Styles --- */
+.mobile-nav {
+  display: flex; /* flex */
+  justify-content: space-between; /* justify-between */
+  padding: 0 1.5rem; /* px-6 */
+  height: 100%;
+  align-items: center;
+}
+.mobile-logo-link {
+  margin: -0.375rem 0.375rem; /* -m-1.5 p-1.5 */
+  padding: 0.375rem;
+}
+.mobile-logo-img {
+  height: 2rem; /* h-8 */
+  width: auto; /* w-auto */
+}
+.mobile-menu-button-wrapper {
+  display: flex; /* flex */
+  justify-content: flex-end; /* justify-end */
+}
+.mobile-menu-button {
+  margin: -0.625rem; /* -m-2.5 */
+  display: inline-flex; /* inline-flex */
+  align-items: center; /* items-center */
+  justify-content: center; /* justify-center */
+  border-radius: 0.375rem; /* rounded-md */
+  padding: 0.625rem; /* p-2.5 */
+  color: #9CA3AF; /* text-gray-400 */
+  margin-left: 0.5rem; /* mx-2 */
+  margin-right: 0.5rem; /* mx-2 */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.mobile-menu-icon {
+  height: 1.5rem; /* h-6 */
+  width: 1.5rem; /* w-6 */
+  stroke: currentColor;
+}
+
+/* Mobile Menu Dialog */
+.mobile-menu-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+.mobile-menu-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
+}
+.mobile-menu-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  max-width: 400px;
+  background-color: #0B0A10; /* Dark background */
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideIn 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.mobile-menu-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.mobile-nav-group {
+  margin-top: 1.5rem;
+}
+.mobile-nav-heading {
+  color: #A0A0A0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+.mobile-nav-sublink {
+  display: block;
+  padding: 0.5rem 0 0.5rem 1rem;
+  font-size: 1rem;
+  color: #E0E0E0;
+  text-decoration: none;
+}
+.mobile-menu-footer {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.mobile-menu-footer .btn {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+
+/* --- Responsive Media Query --- */
+/* This is the xl: breakpoint (1280px) */
+@media (min-width: 1280px) {
+  .desktop-nav {
+    display: grid; /* xl:grid */
+    gap: 0.5rem; /* xl:gap-2 */
+    grid-template-columns: repeat(10, 1fr); /* xl:grid-cols-10 */
+    justify-content: space-between; /* xl:justify-between */
+    padding-left: 2rem; /* xl:px-8 */
+    padding-right: 2rem; /* xl:px-8 */
+  }
+  
+  .col-span-1 { grid-column: span 1 / span 1; }
+  .col-span-4 { grid-column: span 4 / span 4; }
+
+  .mobile-nav {
+    display: none; /* xl:hidden */
+  }
+}
+
+
+/* --- 2. Hero Section --- */
+.hero {
+  min-height: calc(100vh - 80px); /* 100vh minus navbar height */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.hero-bg-orb {
+  position: absolute;
+  top: -200px;
+  left: -300px;
+  width: 1000px;
+  height: 1000px;
+  background-image: url('https://clinchit.io/images/UeN8DRPyDg7p.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.3;
+  z-index: -1;
+  filter: blur(50px);
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* Text on left, visual on right */
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.hero-content {
+  flex: 1;
+  z-index: 2;
+}
+.g2-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #FFC107;
+  margin-bottom: 1rem;
+}
+.g2-badge span {
+  color: #E0E0E0;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+.hero h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+}
+.hero p {
+  font-size: 1.2rem;
+  color: #A0A0A0;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+/* Hero Visual Flow */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* Aligns laptop to the right */
+  align-items: center;
+  height: 100%;
+}
+
+.hero-laptop-img {
+  width: 100%;
+  max-width: 820px;
+  z-index: 1;
+  margin-right: -24px;
+}
+
+.flow-line-container {
+  position: absolute;
+  left: -50px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 2;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #A0B3D0;
+  font-weight: 500;
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(13, 39, 80, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+/* --- 3. Logo Marquee --- */
+.logo-marquee-section {
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.logo-marquee-section h3 {
+  font-size: 1.25rem;
+  color: #A0A0A0;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+}
+
+.marquee-container { width: 100%; display: flex; overflow: hidden; }
+.marquee-content {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+.logo-item {
+  margin: 0 3rem;
+  opacity: 0.6;
+  filter: brightness(0) invert(1);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+/* Styling text to mimic logos */
+.venzi { font-style: italic; font-weight: 500; }
+.shiftcare { text-transform: uppercase; letter-spacing: 1px; }
+.clearlyrated { font-weight: 600; }
+.kc { font-family: 'Times New Roman', Times, serif; }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- 4. "Walk In Prepared" Features Section --- */
+.features-section {
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.tabs-nav {
+  /* This is the w-[92%] from your snippet */
+  width: 92%;
+  margin-left: auto;
+  margin-right: auto;
+  
+  /* This replaces display: flex */
+  display: grid;
+  /* This creates the 4-column layout on large screens (lg:) */
+  grid-template-columns: repeat(4, 1fr);
+  /* gap-4 */
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.tab-btn {
+  /* py-4 px-8 */
+  padding: 1rem 2rem;
+  /* text-base */
+  font-size: 1rem;
+  /* font-bold */
+  font-weight: 700;
+  /* text-white */
+  color: #FFFFFF;
+  /* inactive style="background: rgba(255, 255, 255, 0.1);" */
+  background: rgba(255, 255, 255, 0.1);
+  /* No border in snippet */
+  border: none;
+  /* rounded-[128px] */
+  border-radius: 128px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* min-h-[60px] */
+  min-height: 60px;
+  /* flex justify-center items-center */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-center */
+  text-align: center;
+}
+.tab-btn:hover { 
+  /* This is the logical hover state for the new inactive bg */
+  background: rgba(255, 255, 255, 0.2); 
+  color: #FFFFFF; 
+}
+
+.tab-btn.active {
+  color: white;
+  /* This is the exact, complex background from your snippet */
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
+              linear-gradient(90deg, rgb(197, 134, 0) 0%, rgb(241, 39, 17) 50%, transparent 100%);
+  /* This is the exact, red glow/outline shadow from your snippet */
+  box-shadow: rgb(241, 39, 17) 0px 0px 0px 1px, rgba(241, 39, 17, 0.3) 0px 0px 10px;
+  border: none;
+}
+
+.tab-content { display: flex; align-items: center; gap: 3rem; }
+.tab-text { flex: 1; }
+.tab-text h2 {
+  font-size: 2.5rem;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+}
+.tab-text ul { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
+.tab-text li { display: flex; align-items: flex-start; gap: 1rem; }
+.tab-text li p { font-size: 1.1rem; color: #A0A0A0; line-height: 1.6; }
+.point-icon { font-size: 1.5rem; color: #FF6B00; flex-shrink: 0; margin-top: 4px; }
+.tab-visual { flex: 1.2; }
+.product-mockup {
+  background: rgba(26, 26, 34, 0.7);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.product-mockup img { width: 100%; border-radius: 6px; }
+
+/* --- 5. "How Clinch Works" Section --- */
+.how-it-works {
+  padding: 6rem 0;
+  text-align: center;
+  background-color: #0B0A10;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.how-it-works h2 {
+  font-size: 2.75rem;
+  color: #FFFFFF;
+  margin-bottom: 4rem;
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.how-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.how-step h3 {
+  font-size: 1.25rem;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+.how-step img {
+  max-width: 100%;
+  height: auto;
+}
+.how-cta {
+  margin-top: 4rem;
+  background: rgba(26, 26, 34, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.how-cta p {
+  font-size: 1.25rem;
+  color: #FFFFFF;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* --- 8. Security Section --- */
+.security-section {
+  padding: 6rem 0;
+  background-color: #0c1c36; /* Match other sections */
+}
+.security-card-glass {
+  background: rgba(13, 39, 80, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.security-content h3 {
+  font-size: 1.75rem;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+.security-content p {
+  font-size: 1.1rem;
+  color: #A0B3D0;
+  margin: 1rem 0 1.5rem;
+}
+.security-logos {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.security-logos img {
+  height: 60px;
+}
+
+/* --- 9. Footer --- */
+.footer {
+  padding: 5rem 0;
+  background: #0B0A10; /* Base background */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #A0A0A0;
+}
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+.footer-column p {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.social-icons a {
+  color: #A0A0A0;
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+.social-icons a:hover {
+  color: #FFFFFF;
+}
+.links-column h4 {
+  font-size: 1.1rem;
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+.links-column ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.links-column a {
+  text-decoration: none;
+  color: #A0A0A0;
+  transition: color 0.3s ease;
+  font-size: 0.95rem;
+}
+.links-column a:hover {
+  color: #FFFFFF;
+}

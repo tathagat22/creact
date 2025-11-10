@@ -1,0 +1,235 @@
+/* src/TestimonialSlider.css */
+
+.testimonial-section {
+  padding: 6rem 0;
+  background-color: #0c1c36; /* Match Winning Teams bg */
+  position: relative;
+  overflow: hidden;
+  /* Added padding-top to make room for the absolute header */
+  padding-top: 10rem; 
+}
+
+/* This adds the checkered bg from the screenshot */
+.testimonial-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.testimonial-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- NEW HEADER STYLES (from snippet) --- */
+.testimonial-header {
+  /* flex md:flex-row flex-col */
+  display: flex;
+  flex-direction: column;
+  /* md:items-center */
+  align-items: stretch;
+  /* gap-4 md:gap-16 */
+  gap: 1rem;
+  /* absolute top-0 left-0 right-0 z-10 */
+  position: absolute;
+  top: 4rem; /* Adjusted for section padding */
+  left: 0;
+  right: 0;
+  z-index: 10;
+  /* md:px-16 px-8 */
+  padding: 0 2rem;
+  width: 100%;
+   margin-top: -36px;
+}
+
+.testimonial-title {
+  /* text-white md:text-[28px] text-[20px] ... font-semibold */
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  /* whitespace-nowrap */
+  white-space: nowrap;
+}
+
+.progress-bar-track {
+  /* min-h-[4px] h-1 bg-[#FFFFFF1A] rounded flex-1 */
+  min-height: 4px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  flex: 1;
+  display: block;
+}
+
+.progress-bar-fill {
+  /* min-h-[4px] h-full rounded */
+  min-height: 4px;
+  height: 100%;
+  border-radius: 99px;
+  /* background: linear-gradient(...) */
+  background: linear-gradient(90deg, rgb(241, 39, 17) 0%, rgb(240, 102, 87) 100%);
+  /* transition: width 50ms linear */
+  transition: width 50ms linear;
+}
+
+.slider-nav {
+  /* flex flex-row gap-4 */
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.nav-btn {
+  /* cursor-pointer p-3 md:p-2 */
+  cursor: pointer;
+  padding: 0.75rem;
+  /* min-width: 44px; min-height: 44px; */
+  min-width: 44px;
+  min-height: 44px;
+  /* display: flex; align-items: center; justify-content: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-btn svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Hide the "active" SVG part by default */
+.nav-btn .nav-btn-active {
+  display: none;
+}
+/* Show the "inactive" part by default */
+.nav-btn .nav-btn-inactive {
+  display: block;
+}
+
+/* On hover, hide inactive and show active */
+.nav-btn:hover .nav-btn-active {
+  display: block;
+}
+.nav-btn:hover .nav-btn-inactive,
+.nav-btn:hover g[opacity="0.2"] { /* Target the snippet's opacity g-tag */
+  display: none;
+}
+
+
+/* --- SLIDER STYLES (from your file, matches screenshot) --- */
+.testimonial-slide {
+  padding: 0 1rem; /* Creates gutter between slides */
+}
+
+.testimonial-card-glass {
+  height: 400px; /* Fixed height */
+  background: rgba(13, 39, 80, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px; /* rounded-3xl */
+  padding: 2.5rem;
+  display: flex !important; /* Override slick */
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  /* Added from snippet */
+  background-size: cover;
+  background-position: center center;
+}
+
+.company-logo {
+  max-height: 40px;
+  /* Using SVG, no filter needed if SVGs are correct */
+  /* filter: brightness(0) invert(1); */
+  opacity: 0.9;
+  max-width: 150px;
+}
+
+.quote {
+  font-size: 1.15rem;
+  color: #FFFFFF;
+  line-height: 1.7;
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+}
+
+.author .name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.author .title {
+  font-size: 0.9rem;
+  color: #A0B3D0;
+}
+
+/* --- Responsive for Header --- */
+@media (min-width: 768px) {
+  .testimonial-section {
+    padding-top: 6rem; /* Reset padding */
+  }
+
+  .testimonial-header {
+    flex-direction: row; /* md:flex-row */
+    align-items: center; /* md:items-center */
+    gap: 4rem; /* md:gap-16 */
+    padding: 0 4rem; /* md:px-16 */
+    top: 6rem; /* Reset for non-mobile */
+    margin-bottom: 50px;
+  }
+
+  .testimonial-title {
+    font-size: 28px; /* md:text-[28px] */
+   
+  }
+
+  .nav-btn {
+    padding: 0.5rem; /* md:p-2 */
+  }
+
+  /* This is the .slick-slider class */
+  .slick-slider {
+    padding-top: 8rem; /* Make room for the absolute header */
+  }
+}
+
+@media (max-width: 1023px) {
+  /* Stack cards on tablet */
+  .slick-list {
+    padding: 0 !important; /* Remove horizontal padding if 1 slide */
+  }
+  .testimonial-slide {
+    padding: 0 0.5rem; /* Give a little space */
+  }
+}
